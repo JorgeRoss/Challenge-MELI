@@ -1,0 +1,19 @@
+{
+  "name": "auctionservice",
+  "version": "1.0.0",
+  "description": "Microservicio para procesar ofertas desde SQS y publicar eventos en SNS (AWS Ready).",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "dev": "ts-node src/server.ts"
+  },
+  "author": "Tu Nombre",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.4.5",
+    "ts-node": "^10.9.2",
+    "@types/node": "^20.11.30"
+  }
+} 

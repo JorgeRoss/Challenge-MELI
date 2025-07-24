@@ -1,0 +1,22 @@
+Resources:
+  BidQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: BidQueue
+
+  AuctionEventsTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      TopicName: AuctionEvents
+
+  NotificationQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: NotificationQueue
+
+  NotificationSubscription:
+    Type: AWS::SNS::Subscription
+    Properties:
+      TopicArn: !Ref AuctionEventsTopic
+      Protocol: sqs
+      Endpoint: !GetAtt NotificationQueue.Arn 
