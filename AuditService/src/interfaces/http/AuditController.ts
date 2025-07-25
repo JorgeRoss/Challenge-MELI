@@ -7,12 +7,22 @@ const registerAuditEvent = new RegisterAuditEvent(auditRepo);
 
 export class AuditController {
   static async register(req: Request, res: Response) {
-    await registerAuditEvent.execute(req.body);
-    res.status(201).json({ success: true });
+    try {
+      await registerAuditEvent.execute(req.body);
+      res.status(201).json({ success: true });
+    } catch (error) {
+      console.error('Error en AuditController.register', error);
+      res.status(500).json({ success: false, message: 'Internal server error' });
+    }
   }
 
   static async getAll(req: Request, res: Response) {
-    const events = await auditRepo.findAll();
-    res.json(events);
+    try {
+      const events = await auditRepo.findAll();
+      res.json(events);
+    } catch (error) {
+      console.error('Error en AuditController.getAll', error);
+      res.status(500).json({ success: false, message: 'Internal server error' });
+    }
   }
 } 
